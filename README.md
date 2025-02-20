@@ -1,128 +1,157 @@
-🏀 Basketball Game Project
+# 🏀 **농구 게임 프로젝트 (Vanilla JS → jQuery)**
 
-📖 프로젝트 소개
+![basketball-game](https://img.shields.io/badge/상태-완료-brightgreen) ![version](https://img.shields.io/badge/버전-3.0-blue)  
 
-이 프로젝트는 컴퓨터와 사용자가 번갈아 가면서 슛을 시도하여 더 높은 점수를 얻는 쪽이 승리하는 간단한 농구 게임입니다. 초기 버전에서는 Vanilla JavaScript로 구현했으며, 이후 객체화와 함수화 과정을 통해 코드를 개선했습니다. 마지막으로 jQuery를 도입하여 DOM 조작 및 이벤트 처리 방식을 더 간결하게 만들었습니다.
+---
 
-🕰️ 버전 히스토리
+## 📋 **목차**
+- [🎯 개요](#-개요)  
+- [💡 프로젝트 발전 과정](#-프로젝트-발전-과정)  
+- [📦 주요 기능](#-주요-기능)  
+- [💻 코드 비교](#-코드-비교)  
+- [📚 배운 점](#-배운-점)  
+- [🚀 설치 및 실행](#-설치-및-실행)  
+- [📜 감사의 말](#-감사의-말)  
 
-✅ 1. 초기 버전 (Vanilla JavaScript)
+---
 
-DOM 조작: document.getElementById(), document.getElementsByClassName() 사용
+## 🎯 **개요**
+이 프로젝트는 사용자와 컴퓨터가 번갈아가며 슛을 던져 더 높은 점수를 얻는 **턴제 농구 게임**입니다. 각 플레이어는 제한된 횟수 안에서 최대한 많은 점수를 획득해야 하며, 컴퓨터의 AI는 점수 차이에 따라 슛 성공 확률이 달라집니다.  
 
-이벤트 처리: onclick 속성을 사용하여 버튼 클릭 이벤트 처리
+- **초기 버전:** Vanilla JavaScript (수동 DOM 조작 및 이벤트 처리)  
+- **리팩토링 버전:** 반복 코드 최소화 및 함수화를 통한 가독성 개선  
+- **최종 버전:** **jQuery**를 사용하여 더 간결하고 효율적인 코드 작성, 플러그인을 통한 부드러운 애니메이션 추가  
 
-전역 변수 사용: userScore, comScore, shootLeft 등 전역 변수로 게임 상태 관리
+---
 
-로직 구현: 순차적인 절차 지향 프로그래밍 방식으로 작성
+## 💡 **프로젝트 발전 과정**  
 
-♻️ 2. 리팩토링
+| 🧩 **버전** | 🚀 **변경 사항 및 개선점** |
+|-------------|----------------------------|
+| **v1.0** - Vanilla JS | `getElementById()`와 `innerHTML`을 사용한 수동 DOM 조작 및 기본 이벤트 처리 |
+| **v2.0** - 코드 리팩토링 | 반복되는 코드를 함수로 모듈화하고, 게임 로직을 객체화하여 유지보수성 향상 |
+| **v3.0** - jQuery 도입 ✅ | `$()`를 사용한 간결한 DOM 접근, `.on()`을 통한 효율적인 이벤트 처리 및 `.fadeIn()`과 `.fadeOut()`으로 부드러운 애니메이션 적용 |
 
-코드 중복 제거: 점수 업데이트, 버튼 활성화/비활성화 등의 기능을 함수화
+---
 
-객체화: game, computer, user 객체를 도입하여 관련 변수를 묶음
-- computer 객체 내에 score, percent2, percent3 속성을 대입했고 이는 초기 ver의 comScore, comPercent2, comPercent3를 리팩토링한 사례에 해당함.
+## 📦 **주요 기능**
+✅ **턴제 슛팅:** 사용자와 컴퓨터가 번갈아가며 슛을 시도  
+✅ **실시간 점수 업데이트:** DOM을 통해 즉각적으로 점수 표시  
+✅ **AI 난이도 조정:** 점수 차이에 따라 AI의 슛 성공 확률 변화  
+✅ **부드러운 애니메이션:** `.fadeIn()`, `.fadeOut()`, `animateNumber` 플러그인 활용  
+✅ **직관적인 게임 조작:** 버튼 클릭으로 쉽게 게임 진행 가능  
 
-동적 속성 접근: computer['percent' + shootType] 방식으로 속성에 동적으로 접근
-- 초기 보전의 어느 부분이 수정 되었는지를 직접적으로 명시한다면 좀 더 좋은 README에 해당하겠죠.
+---
 
-AI 로직 추가: 점수 차이에 따라 컴퓨터의 슛 성공 확률이 조정되도록 구현
+## 💻 **코드 비교**
 
-💡 3. jQuery 도입
+### **1. DOM 선택**
+| **방법** | **Vanilla JavaScript** | **jQuery** |
+|----------|------------------------|------------|
+| **ID로 요소 선택** | `document.getElementById('user-score').innerHTML = 20;` | `$('#user-score').html(20);` |
+| **클래스로 요소 선택** | `document.getElementsByClassName('btn-user')` | `$('.btn-user')` |
+| **태그로 요소 선택** | `document.getElementsByTagName('button')` | `$('button')` |
 
-DOM 셀렉션: $(#user-score), $('.btn-computer') 등 CSS 선택자 문법을 사용해 더 직관적인 DOM 접근
+---
 
-이벤트 처리: .on() 메서드를 통해 이벤트 바인딩
+### **2. 이벤트 처리**
+| **방법** | **Vanilla JavaScript** | **jQuery** |
+|----------|------------------------|------------|
+| **클릭 이벤트** | `element.addEventListener('click', onShoot);` | `$('#shoot-btn').on('click', onShoot);` |
+| **인라인 이벤트** | `<button onclick="onShoot()">` | `<button id="shoot-btn">` + `.on('click', onShoot)` |
 
-애니메이션 효과: .fadeIn(), .fadeOut()과 콜백 함수 사용으로 자연스러운 전환 효과 추가
+---
 
-플러그인 사용: jquery.animateNumber 플러그인을 통해 점수판의 숫자 애니메이션 적용
+### **3. 버튼 활성화/비활성화**
+| **방법** | **Vanilla JavaScript** | **jQuery** |
+|----------|------------------------|------------|
+| **활성화/비활성화** | 배열을 반복하며 `.disabled` 속성 설정 | `$('.btn-user').prop('disabled', true);` |
+| **단일 요소** | `element.disabled = false;` | `$('#shoot-btn').prop('disabled', false);` |
 
-⚙️ 주요 개념 및 원리 (Key Concepts & Principles)
+---
 
-📌 1. DOM 조작
+### **4. 애니메이션과 텍스트 업데이트**
+```javascript
+// Vanilla JS
+document.getElementById('text').innerHTML = '슛 성공!';
+```
+```javascript
+// jQuery + 페이드 효과
+$('#text').fadeOut(300, function() {
+    $(this).html('슛 성공!').fadeIn(100);
+});
+```
 
-Vanilla JS에서는 innerHTML을 사용하여 텍스트를 업데이트했지만, jQuery에서는 .html()로 더 간단하게 처리함
+---
 
-버튼 비활성화는 element.disabled = true 대신 .prop('disabled', true)로 구현
+### **5. AI 로직 (점수 차이에 따라 성공 확률 변경)**
+```javascript
+if (difference > 11) {
+    computer.percent2 = 0.7;
+    computer.percent3 = 0.43;
+} else if (difference > 7) {
+    computer.percent2 = 0.6;
+    computer.percent3 = 0.38;
+} else if (difference < -11) {
+    computer.percent2 = 0.3;
+    computer.percent3 = 0.23;
+} else if (difference < -7) {
+    computer.percent2 = 0.4;
+    computer.percent3 = 0.28;
+}
+```
 
-💥 2. 이벤트 처리
+---
 
-초기에는 onclick 속성을 사용했으나, jQuery에서는 .on('click', function() {})으로 더 깔끔하게 이벤트를 처리함
+## 💎 **jQuery의 장점**
+| **기능**                     | **Vanilla JavaScript**                               | **jQuery**                                      |
+|------------------------------|---------------------------------------------------|----------------------------------------------|
+| **코드 가독성**              | 코드가 길고 반복적임                               | 짧고 직관적인 체이닝 방식으로 간결함         |
+| **이벤트 처리**              | 요소마다 `addEventListener()`를 개별 작성해야 함  | `.on()`으로 다수 요소에 일괄 이벤트 적용    |
+| **DOM 선택**                 | `getElementById`, `getElementsByClassName` 사용    | CSS 선택자 방식으로 `$()`로 통합             |
+| **애니메이션**               | CSS 전환이나 JS 직접 조작 필요                     | `.fadeIn()`, `.fadeOut()` 등 내장 함수 사용 |
+| **속성 제어**                | `.disabled`, `.style` 등을 개별 조작해야 함        | `.prop()`, `.css()`, `.html()`로 간편하게 제어 |
+| **브라우저 호환성**          | 구버전 브라우저에서 일부 기능 미지원               | 구버전 호환성 우수                           |
 
-이벤트 리스너를 분리하여 코드의 가독성을 높임
+---
 
-🌍 3. 전역 변수와 지역 변수
+## 📚 **배운 점**
+### ✅ **주요 학습 내용**
+- **DOM 조작의 효율성:** jQuery는 더 짧고 직관적인 문법으로 DOM을 쉽게 조작할 수 있음  
+- **이벤트 처리의 간소화:** `.on()` 메서드로 코드가 더욱 간결해짐  
+- **코드 재사용성 향상:** 반복적인 코드 블록을 함수화하고, 관련 데이터를 객체로 그룹화함  
+- **UI/UX 개선:** `fadeIn()`, `fadeOut()` 등의 애니메이션으로 사용자 경험이 향상됨  
+- **게임 로직의 향상:** AI가 점수 차이에 따라 전략적으로 슛을 시도하여 게임의 흥미를 더함  
 
-초기에는 모든 게임 상태를 전역 변수로 관리했으나, 객체와 함수의 도입으로 전역 변수 사용을 최소화
+---
 
-game, computer, user 객체를 통해 상태와 관련 로직을 관리함
+### 📌 **향후 개선 사항**
+- **웹 스토리지 기능:** `localStorage`를 사용하여 최고 점수를 기록  
+- **멀티플레이어 모드:** 사용자 간 대결 기능 추가  
+- **현대적인 프레임워크 적용:** React 또는 Vue.js를 통해 더 세련된 UI 제공  
 
-🔁 4. 콜백 함수와 비동기 처리
+---
 
-.fadeOut()과 .fadeIn()을 콜백 함수로 연결하여 화면 전환 시 깜빡이는 현상을 제거함
+## 🚀 **설치 및 실행**
+```bash
+# 1. 레포지토리 클론
+git clone https://github.com/sungjm/basketball_game_jquery.git
 
-비동기 함수의 제어권 반환과 콜백 함수의 실행 순서를 이해함
+# 2. 프로젝트 폴더로 이동
+cd basketball_game_jquery
 
-🆚 jQuery 적용의 장단점
+# 3. index.html 파일을 브라우저로 열어서 게임 실행
+```
 
-✅ 장점
+---
 
-코드의 간결화: document.getElementById() 대신 $('#id')로 간단하게 접근
+## 📜 **새로 배운 점**
+🎯 **jQuery:** 직관적인 DOM 조작과 이벤트 처리 제공  
+🎨 **AnimateNumber.js:** 부드러운 점수 애니메이션 구현에 도움  
+💡 **학습 과정:** Vanilla JS부터 jQuery까지의 전환을 통해 효율적인 코드 작성법 습득  
 
-체이닝(Chaining): 여러 메서드를 연속적으로 호출하여 코드의 가독성을 높임
+---
 
-크로스 브라우징(Cross-Browsing): 다양한 브라우저에서 일관된 동작 보장
-
-다양한 플러그인 사용 가능: 추가 기능을 손쉽게 도입할 수 있음
-
-❌ 단점
-
-추가적인 라이브러리 로드로 인한 성능 저하 가능성
-
-최신 JavaScript에서는 querySelector() 및 querySelectorAll()로 유사한 기능을 제공
-
-📚 배운 점과 앞으로의 과제
-
-🎯 배운 점
-
-Vanilla JS와 jQuery의 차이점 및 장단점 이해
-
-DOM 조작 및 이벤트 처리의 효율적인 방법 학습
-
-비동기 함수와 콜백 함수의 사용법 익힘
-
-코드 리팩토링을 통해 유지보수성과 가독성 개선
-
-🚀 앞으로의 과제
-
-JavaScript의 최신 기능(ES6+)을 도입하여 코드 개선
-
-더 복잡한 AI 로직을 추가하여 게임의 재미 요소 강화
-
-CSS 애니메이션과 트랜지션을 사용해 더 자연스러운 사용자 경험 제공
-
-💻 프로젝트 실행 방법
-
-📥 1. 코드 다운로드
-
-$ git clone https://github.com/sungjm/basketball_game_jquery.git
-$ cd basketball_game_jquery
-
-🚀 2. 로컬 서버 실행
-
-단순히 파일을 브라우저에서 열어도 실행이 가능합니다
-
-또는 Live Server 플러그인을 사용하면 더 편리합니다
-
-🌐 3. 브라우저에서 실행
-
-index.html 파일을 브라우저에서 열어 게임을 시작하세요
-
-🏁 마무리
-
-이 프로젝트는 JavaScript와 jQuery를 사용하여 단계적으로 기능을 개선해 나가는 과정을 통해 더 효율적이고 유지보수하기 쉬운 코드를 작성하는 방법을 배울 수 있었습니다. 앞으로도 최신 기술을 적용하여 더 발전된 프로젝트로 확장해 나가겠습니다.
-
-👤 Author: sungjm
-
-🗓️ Last Updated: 2025-02-20
+## 🤝 **기여 방법**
+프로젝트에 기여를 원하시면 **이슈**를 등록하거나 **풀 리퀘스트(PR)**를 제출해 주세요.  
+도움이 되셨다면 **GitHub 저장소에 ⭐️ 스타를 눌러주세요!**  
