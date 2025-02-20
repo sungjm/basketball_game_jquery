@@ -28,7 +28,7 @@ AI 로직 추가: 점수 차이에 따라 컴퓨터의 슛 성공 확률이 조�
 
 💡 3. jQuery 도입
 
-DOM 셀렉션: $('#user-score'), $('.btn-computer') 등 CSS 선택자 문법을 사용해 더 직관적인 DOM 접근
+DOM 셀렉션: $(#user-score), $('.btn-computer') 등 CSS 선택자 문법을 사용해 더 직관적인 DOM 접근
 
 이벤트 처리: .on() 메서드를 통해 이벤트 바인딩
 
