@@ -21,8 +21,10 @@ DOM 조작: document.getElementById(), document.getElementsByClassName() 사용
 코드 중복 제거: 점수 업데이트, 버튼 활성화/비활성화 등의 기능을 함수화
 
 객체화: game, computer, user 객체를 도입하여 관련 변수를 묶음
+- computer 객체 내에 score, percent2, percent3 속성을 대입했고 이는 초기 ver의 comScore, comPercent2, comPercent3를 리팩토링한 사례에 해당함.
 
 동적 속성 접근: computer['percent' + shootType] 방식으로 속성에 동적으로 접근
+- 초기 보전의 어느 부분이 수정 되었는지를 직접적으로 명시한다면 좀 더 좋은 README에 해당하겠죠.
 
 AI 로직 추가: 점수 차이에 따라 컴퓨터의 슛 성공 확률이 조정되도록 구현
 
